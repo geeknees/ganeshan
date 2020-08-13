@@ -60,7 +60,6 @@ class Product < ActiveRecord::Base
 end
 
 p Product.all.to_a.count
-p Product.all.to_a.count
 p Product.all
 p Product.limit(1)
 p Product.where(id: 1).limit(10)
