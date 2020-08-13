@@ -24,6 +24,48 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+```rb
+#!/usr/bin/env ruby
+
+require "bundler/inline"
+
+gemfile(true) do
+  source "https://rubygems.org"
+  git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+  gem "ganesh"
+end
+
+
+require 'active_record'
+require 'ganesh'
+
+ActiveRecord::Base.establish_connection(
+  host:     '127.0.0.1',
+  adapter:  'postgresql',
+  username: 'hoge',
+  password: 'password',
+  database: 'ganesh'
+)
+
+Ganesh.enabled = true
+
+ActiveRecord::Schema.define do
+  create_table :products, force: true do |t|
+    t.text :name
+  end
+end
+
+class Product < ActiveRecord::Base
+end
+
+p Product.all.to_a.count
+p Product.all.to_a.count
+p Product.all
+p Product.limit(1)
+p Product.where(id: 1).limit(10)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
