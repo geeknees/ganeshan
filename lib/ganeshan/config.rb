@@ -1,4 +1,6 @@
-module Ganesh
+# frozen_string_literal: true
+
+module Ganeshan
   @enabled = (/\A(1|true)\z/i =~ ENV['GANESH_ENABLED'])
 
   @logger = Logger.new(ENV['GANESH_LOG'] || $stdout).tap do |logger|

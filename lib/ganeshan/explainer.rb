@@ -1,4 +1,4 @@
-module Ganesh
+module Ganeshan
   module Explainer
     def exec_query(*args)
       p args
@@ -11,8 +11,8 @@ module Ganesh
 
     def _with_explain(sql:, binds:)
       begin
-        if Ganesh.enabled && sql =~ /\A\s*SELECT\b/i
-          conn = Ganesh.connection || raw_connection
+        if Ganeshan.enabled && sql =~ /\A\s*SELECT\b/i
+          conn = Ganeshan.connection || raw_connection
 
           type_casted_binds = if binds
                                 type_casted_binds(binds)
@@ -29,14 +29,14 @@ module Ganesh
           _validate_explain(sql: sql, exp: exp)
         end
       rescue StandardError => e
-        Ganesh.logger.error("#{e}\n\t#{e.backtrace.join("\n\t")}")
+        Ganeshan.logger.error("#{e}\n\t#{e.backtrace.join("\n\t")}")
       end
 
       yield
     end
 
     def _validate_explain(sql:, exp:)
-      Ganesh::JsonLogger.log(
+      Ganeshan::JsonLogger.log(
         sql: sql,
         explain: exp,
       )

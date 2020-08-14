@@ -1,4 +1,4 @@
-module Ganesh
+module Ganeshan
   module JsonLogger
     module_function
 
@@ -9,7 +9,7 @@ module Ganesh
       }
 
       line = CodeRay.scan(JSON.pretty_generate(h), :json).terminal
-      Ganesh.logger.info(line)
+      Ganeshan.logger.info(line)
     end
   end
 end

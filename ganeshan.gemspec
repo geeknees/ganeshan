@@ -1,20 +1,20 @@
-require_relative 'lib/ganesh/version'
+require_relative 'lib/ganeshan/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ganesh"
-  spec.version       = Ganesh::VERSION
+  spec.name          = "ganeshan"
+  spec.version       = Ganeshan::VERSION
   spec.authors       = ["Masumi Kawasaki"]
   spec.email         = ["mkawasaki@sbihg.co.jp"]
 
   spec.summary       = %q{show EXPLAIN log with postgresql.}
   spec.description   = %q{show EXPLAIN log with postgresql to help in detecting slow queries.}
-  spec.homepage      = "https://github.com/geeknees/ganesh"
+  spec.homepage      = "https://github.com/geeknees/ganeshan"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/geeknees/ganesh"
-  spec.metadata["changelog_uri"] = "https://github.com/geeknees/ganesh"
+  spec.metadata["source_code_uri"] = "https://github.com/geeknees/ganeshan"
+  spec.metadata["changelog_uri"] = "https://github.com/geeknees/ganeshan"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

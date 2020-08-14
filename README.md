@@ -1,13 +1,13 @@
-# Ganesh
+# Ganeshan
 
-Ganesh is a gem to find slow query with EXPAIN.
+Ganeshan is a gem to find slow query with EXPAIN.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ganesh'
+gem 'ganeshan'
 ```
 
 And then execute:
@@ -16,13 +16,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ganesh
+    $ gem install ganeshan
 
 ## Usage
 
 You can enable it with config/environments/development.rb
 ```rb
-Ganesh.enabled = true
+Ganeshan.enabled = true
 ```
 
 Or You can use it without rails, but with active_record.
@@ -36,22 +36,22 @@ gemfile(true) do
   source "https://rubygems.org"
   git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-  gem "ganesh"
+  gem "ganeshan"
 end
 
 
 require 'active_record'
-require 'ganesh'
+require 'ganeshan'
 
 ActiveRecord::Base.establish_connection(
   host:     '127.0.0.1',
   adapter:  'postgresql',
   username: 'hoge',
   password: 'password',
-  database: 'ganesh'
+  database: 'ganeshan'
 )
 
-Ganesh.enabled = true
+Ganeshan.enabled = true
 
 ActiveRecord::Schema.define do
   create_table :products, force: true do |t|
@@ -71,7 +71,7 @@ p Product.where(id: 1).limit(10)
 then, output is like this.
 
 ```rb
-Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+Ganeshan  INFO    2020-08-14 02:30:34 +0900       {
   "sql": "SELECT \"products\".* FROM \"products\"",
   "explain": [
     {
@@ -82,7 +82,7 @@ Ganesh  INFO    2020-08-14 02:30:34 +0900       {
 }
 2
 
-Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+Ganeshan  INFO    2020-08-14 02:30:34 +0900       {
   "sql": "SELECT \"products\".* FROM \"products\" LIMIT $1",
   "explain": [
     {
@@ -97,7 +97,7 @@ Ganesh  INFO    2020-08-14 02:30:34 +0900       {
 }
 #<ActiveRecord::Relation [#<Product id: 2, name: "test2">, #<Product id: 1, name: "test1">]>
 
-Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+Ganeshan  INFO    2020-08-14 02:30:34 +0900       {
   "sql": "SELECT \"products\".* FROM \"products\" LIMIT $1",
   "explain": [
     {
@@ -112,7 +112,7 @@ Ganesh  INFO    2020-08-14 02:30:34 +0900       {
 }
 #<ActiveRecord::Relation [#<Product id: 2, name: "test2">]>
 
-Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+Ganeshan  INFO    2020-08-14 02:30:34 +0900       {
   "sql": "SELECT \"products\".* FROM \"products\" WHERE \"products\".\"id\" = $1 LIMIT $2",
   "explain": [
     {
@@ -140,7 +140,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/geeknees/ganesh. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/geeknees/ganesh/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/geeknees/ganeshan. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/geeknees/ganeshan/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
@@ -149,4 +149,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Ganesh project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/geeknees/ganesh/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Ganeshan project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/geeknees/ganeshan/blob/master/CODE_OF_CONDUCT.md).
