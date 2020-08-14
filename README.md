@@ -1,8 +1,6 @@
 # Ganesh
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ganesh`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Ganesh is a gem to find slow query with EXPAIN.
 
 ## Installation
 
@@ -22,7 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can enable it with config/environments/development.rb
+```rb
+Ganesh.enabled = true
+```
+
+Or You can use it without rails, but with active_record.
 
 ```rb
 #!/usr/bin/env ruby
@@ -65,6 +68,70 @@ p Product.limit(1)
 p Product.where(id: 1).limit(10)
 ```
 
+then, output is like this.
+
+```rb
+Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+  "sql": "SELECT \"products\".* FROM \"products\"",
+  "explain": [
+    {
+      "line": 1,
+      "QUERY PLAN": "Seq Scan on products  (cost=0.00..22.00 rows=1200 width=40)"
+    }
+  ]
+}
+2
+
+Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+  "sql": "SELECT \"products\".* FROM \"products\" LIMIT $1",
+  "explain": [
+    {
+      "line": 1,
+      "QUERY PLAN": "Limit  (cost=0.00..0.20 rows=11 width=40)"
+    },
+    {
+      "line": 2,
+      "QUERY PLAN": "  ->  Seq Scan on products  (cost=0.00..22.00 rows=1200 width=40)"
+    }
+  ]
+}
+#<ActiveRecord::Relation [#<Product id: 2, name: "test2">, #<Product id: 1, name: "test1">]>
+
+Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+  "sql": "SELECT \"products\".* FROM \"products\" LIMIT $1",
+  "explain": [
+    {
+      "line": 1,
+      "QUERY PLAN": "Limit  (cost=0.00..0.02 rows=1 width=40)"
+    },
+    {
+      "line": 2,
+      "QUERY PLAN": "  ->  Seq Scan on products  (cost=0.00..22.00 rows=1200 width=40)"
+    }
+  ]
+}
+#<ActiveRecord::Relation [#<Product id: 2, name: "test2">]>
+
+Ganesh  INFO    2020-08-14 02:30:34 +0900       {
+  "sql": "SELECT \"products\".* FROM \"products\" WHERE \"products\".\"id\" = $1 LIMIT $2",
+  "explain": [
+    {
+      "line": 1,
+      "QUERY PLAN": "Limit  (cost=0.15..8.17 rows=1 width=40)"
+    },
+    {
+      "line": 2,
+      "QUERY PLAN": "  ->  Index Scan using products_pkey on products  (cost=0.15..8.17 rows=1 width=40)"
+    },
+    {
+      "line": 3,
+      "QUERY PLAN": "        Index Cond: (id = '1'::bigint)"
+    }
+  ]
+}
+#<ActiveRecord::Relation [#<Product id: 1, name: "test1">]>
+
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
