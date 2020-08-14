@@ -1,6 +1,7 @@
 module Ganesh
   module Explainer
     def exec_query(*args)
+      p args
       _with_explain(sql: args.first, binds: args[2]) do
         super
       end
@@ -12,7 +13,12 @@ module Ganesh
       begin
         if Ganesh.enabled && sql =~ /\A\s*SELECT\b/i
           conn = Ganesh.connection || raw_connection
-          type_casted_binds = type_casted_binds(binds)
+
+          type_casted_binds = if binds
+                                type_casted_binds(binds)
+                              else
+                                []
+                              end
 
           if type_casted_binds.empty?
             exp = conn.query("EXPLAIN #{sql}").to_a
