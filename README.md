@@ -1,6 +1,6 @@
 # Ganeshan
 
-Ganeshan is a gem to find slow query with EXPAIN.
+Ganeshan is a gem to find slow query with EXPAIN for postgreSQL.
 
 ## Installation
 
