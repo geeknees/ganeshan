@@ -1,9 +1,5 @@
-RSpec.describe Ganesh do
+RSpec.describe Ganeshan do
   it "has a version number" do
-    expect(Ganesh::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
+    expect(Ganeshan::VERSION).not_to be nil
   end
 end
