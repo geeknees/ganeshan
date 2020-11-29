@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/geeknees/ganeshan.svg?branch=master)](https://travis-ci.com/geeknees/ganeshan)
+
 # Ganeshan
 
 Ganeshan is a gem to find slow query with EXPAIN for postgreSQL.
