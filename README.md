@@ -1,4 +1,9 @@
-[![Build Status](https://travis-ci.com/geeknees/ganeshan.svg?branch=master)](https://travis-ci.com/geeknees/ganeshan)
+[![Gem Version](https://badge.fury.io/rb/ganeshan.svg)](https://badge.fury.io/rb/ganeshan)
+[![CI](https://github.com/geeknees/ganeshan/actions/workflows/main.yml/badge.svg)](https://github.com/geeknees/ganeshan/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/geeknees/ganeshan/branch/master/graph/badge.svg?token=8K4KY7WO8Y)](https://codecov.io/gh/geeknees/ganeshan)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c4ba3cd91bb3ade5d8ea/maintainability)](https://codeclimate.com/github/geeknees/ganeshan/maintainability)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/geeknees/ganeshan)
+![GitHub](https://img.shields.io/github/license/geeknees/ganeshan)
 
 # Ganeshan
 
