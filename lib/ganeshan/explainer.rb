@@ -1,6 +1,6 @@
 module Ganeshan
   module Explainer
-    def exec_query(*args)
+    def exec_query(*args, **kwargs)
       p args
       _with_explain(sql: args.first, binds: args[2]) do
         super

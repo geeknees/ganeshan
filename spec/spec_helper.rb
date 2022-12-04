@@ -1,6 +1,19 @@
 require "bundler/setup"
 require "ganeshan"
 
+require 'simplecov'
+require 'simplecov-cobertura'
+
+if ENV['CI']
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+  SimpleCov.start
+else
+  SimpleCov.start do
+    enable_coverage :branch
+    primary_coverage :branch
+  end
+end
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"

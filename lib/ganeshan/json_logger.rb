@@ -8,7 +8,7 @@ module Ganeshan
         explain: explain.each_with_index.map { |r, i| { line: i + 1 }.merge(r) },
       }
 
-      line = CodeRay.scan(JSON.pretty_generate(h), :json).terminal
+      line = CodeRay.scan(JSON.pretty_generate(**h), :json).terminal
       Ganeshan.logger.info(line)
     end
   end

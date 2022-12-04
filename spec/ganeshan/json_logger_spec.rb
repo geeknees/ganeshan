@@ -1,6 +1,6 @@
 RSpec.describe Ganeshan::JsonLogger do
   before do
-    Ganeshan.logger = Logger.new('/dev/null')
+    Ganeshan.logger = Logger.new(STDOUT)
   end
 
   let(:sql) do
